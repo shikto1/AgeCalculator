@@ -114,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Years"
+                    android:text="Years "
                     android:textColor="@color/white"
                     android:textSize="@dimen/normalTextSize" />
 
@@ -125,7 +125,7 @@
                     android:gravity="center"
                     android:text="@string/zeroZero"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/normalTextSize" />
+                    android:textSize="@dimen/largTextSize" />
 
             </LinearLayout>
 
@@ -150,7 +150,7 @@
                     android:gravity="center"
                     android:text="@string/zeroZero"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/normalTextSize" />
+                    android:textSize="@dimen/largTextSize" />
 
             </LinearLayout>
 
@@ -175,7 +175,7 @@
                     android:gravity="center"
                     android:text="@string/zeroZero"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/normalTextSize" />
+                    android:textSize="@dimen/largTextSize" />
 
             </LinearLayout>
 
@@ -224,7 +224,7 @@
                     android:gravity="center"
                     android:text="@string/zeroZero"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/normalTextSize" />
+                    android:textSize="@dimen/largTextSize" />
 
             </LinearLayout>
 
@@ -249,7 +249,7 @@
                     android:gravity="center"
                     android:text="@string/zeroZero"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/normalTextSize" />
+                    android:textSize="@dimen/largTextSize" />
 
             </LinearLayout>
         </LinearLayout>
