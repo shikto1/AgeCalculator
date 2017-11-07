@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    //Margin and padding..................................
+    <dimen name="padding">16dp</dimen>
+    <dimen name="extraLargeMargin">12dp</dimen>
+    <dimen name="LargeMargin">10dp</dimen>
+    <dimen name="mediumMargin">8dp</dimen>
+    <dimen name="smallMargin">4dp</dimen>
+    <dimen name="extraSmallMargin">2dp</dimen>
+
+
+    //  All Text Sizes..............................................
+
+    <dimen name="normalTextSize">16sp</dimen>
+    <dimen name="mediumTextSize">14sp</dimen>
+    <dimen name="smallTextSize">12sp</dimen>
+    <dimen name="extraSmallTextSize">10sp</dimen>
+    <dimen name="largTextSize">20sp</dimen>
+
+
+
+</resources>

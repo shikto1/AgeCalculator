@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Age Calculator</string>
+    <string name="todaysDate">Today\'s Date:</string>
+    <string name="dateOfBirth">Date Of Birth:</string>
+    <string name="age">Age:</string>
+    <string name="nextBirthDay">Next Birthday:</string>
+    <string name="zeroZero">00</string>
+</resources>
