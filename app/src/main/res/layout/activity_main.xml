@@ -26,7 +26,10 @@
             android:layout_height="wrap_content"
             android:background="@drawable/back_of_text"
             android:elevation="@dimen/LargeMargin"
-            android:padding="@dimen/extraLargeMargin"
+            android:padding="@dimen/LargeMargin"
+            android:gravity="center_vertical"
+            android:drawableLeft="@drawable/icon_calender"
+            android:drawablePadding="@dimen/smallMargin"
             android:text="dd - mm - yyyy"
             android:textColor="@color/white"
             android:textSize="@dimen/normalTextSize" />
@@ -47,7 +50,11 @@
             android:layout_height="wrap_content"
             android:background="@drawable/back_of_text"
             android:elevation="@dimen/LargeMargin"
-            android:padding="@dimen/extraLargeMargin"
+            android:padding="@dimen/LargeMargin"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="@dimen/padding"
+            android:drawableLeft="@drawable/icon_calender"
+            android:drawablePadding="@dimen/smallMargin"
             android:text="dd - mm - yyyy"
             android:textColor="@color/white"
             android:textSize="@dimen/normalTextSize" />
@@ -107,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Year"
+                    android:text="Years"
                     android:textColor="@color/white"
                     android:textSize="@dimen/normalTextSize" />
 
