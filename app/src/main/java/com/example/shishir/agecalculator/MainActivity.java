@@ -16,6 +16,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -69,14 +70,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (id) {
             case R.id.todaysDate: {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(this, this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.setCancelable(false);
+                datePickerDialog.setCancelable(true);
                 datePickerDialog.show();
                 dateFlag = 1;
                 break;
             }
             case R.id.dateOfBirth: {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(this, this, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.setCancelable(false);
+                datePickerDialog.setCancelable(true);
                 datePickerDialog.getDatePicker().setMaxDate(Calendar.getInstance().getTimeInMillis());
                 datePickerDialog.show();
                 dateFlag = 2;
@@ -87,7 +88,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String birthDate = dateOfBirthTv.getText().toString();
 
                 calculateAge(today, birthDate);
-
                 break;
             }
             case R.id.clearBtn: {
@@ -115,7 +115,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         monthsAtAgeTv.setText(String.format("%02d", month));
         daysAtAgeTv.setText(String.format("%02d", day));
 
+
+        //Getting Birth Month and Date...................................................
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd - MM - yyyy");
+        Calendar birth = Calendar.getInstance();// the format of your date
+        try {
+            Date birthDateFormat = sdf.parse(birthDate);
+            birth.setTime(birthDateFormat);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        int birthMonth = birth.get(Calendar.MONTH);
+        int dayOfBirthMonth = birth.get(Calendar.DAY_OF_MONTH);
+
+
+        //Setting this month to current year.................................................
+
+        Calendar currentYearBirthDate = Calendar.getInstance();
+        currentYearBirthDate.set(Calendar.MONTH, birthMonth);
+        currentYearBirthDate.set(Calendar.DAY_OF_MONTH, dayOfBirthMonth);
+        LocalDate currentYearBirth = LocalDate.fromCalendarFields(currentYearBirthDate);
+
+        Period period = new Period(currentDate, currentYearBirth, PeriodType.yearMonthDay());
+        int monthsRemaining = period.getMonths();
+        int daysRemaining = period.getDays();
+
+        monthsAtNextBirth.setText(String.format("%02d", monthsRemaining));
+        daysAtNextBirth.setText(String.format("%02d", daysRemaining));
     }
+
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
