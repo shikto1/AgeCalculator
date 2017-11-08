@@ -21,7 +21,7 @@
 
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/todaysDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/back_of_text"
@@ -45,7 +45,7 @@
             android:textSize="@dimen/normalTextSize" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/dateOfBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/back_of_text"
@@ -68,14 +68,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/calculateBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Calculate" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/clearBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -119,6 +119,7 @@
                     android:textSize="@dimen/normalTextSize" />
 
                 <TextView
+                    android:id="@+id/yearAtAge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/mediumMargin"
@@ -144,6 +145,7 @@
                     android:textSize="@dimen/normalTextSize" />
 
                 <TextView
+                    android:id="@+id/monthsAtAge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/mediumMargin"
@@ -169,6 +171,7 @@
                     android:textSize="@dimen/normalTextSize" />
 
                 <TextView
+                    android:id="@+id/daysAtAge"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/mediumMargin"
@@ -218,6 +221,7 @@
                     android:textSize="@dimen/normalTextSize" />
 
                 <TextView
+                    android:id="@+id/montsAtNextBirthDay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/mediumMargin"
@@ -243,6 +247,7 @@
                     android:textSize="@dimen/normalTextSize" />
 
                 <TextView
+                    android:id="@+id/daysAtNextBirthDay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/mediumMargin"

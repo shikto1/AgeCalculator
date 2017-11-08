@@ -5,5 +5,10 @@
     <color name="colorAccent">#9078ac</color>
 
 
+    <color name="p">#0071c1</color>
+    <color name="pD">#004690</color>
+    <color name="a">#599ff4</color>
+
+
     <color name="white">#ffffff</color>
 </resources>
