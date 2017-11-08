@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void calculateAge(String today, String birthDate) {
 
-        int monthRemaining, dayRemaining;
+        int monthRemaining = 0, dayRemaining = 0;
 
         DateTimeFormatter formatter = DateTimeFormat.forPattern("dd - MM - yyyy");
         LocalDate dateOfBirth = LocalDate.parse(birthDate, formatter);
@@ -152,23 +152,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Getting Differences....................................................
 
-        if (dayOfBirthMonth >= dayOfCurrentMonth) {
-            dayRemaining = dayOfBirthMonth - dayOfCurrentMonth;
-            if (birthMonth >= currentMonth) {
+        if (birthMonth == currentMonth) {
+            if (dayOfBirthMonth >= dayOfCurrentMonth) {
+                dayRemaining = dayOfBirthMonth - dayOfCurrentMonth;
                 monthRemaining = birthMonth - currentMonth;
             } else {
-                birthMonth = birthMonth + 12;
-                monthRemaining = 12 + (birthMonth - currentMonth);
+                dayRemaining = (dayOfBirthMonth + 30) - dayOfCurrentMonth;
+                monthRemaining = (birthMonth + 12) - currentMonth - 1;
             }
-        } else {
-            dayOfBirthMonth = dayOfBirthMonth + 30;
-            currentMonth = currentMonth + 1;
-            dayRemaining = dayOfBirthMonth - dayOfCurrentMonth;
-            if (birthMonth >= currentMonth) {
+        } else if (birthMonth > currentMonth) {
+            if (dayOfBirthMonth >= dayOfCurrentMonth) {
+                dayRemaining = dayOfBirthMonth - dayOfCurrentMonth;
                 monthRemaining = birthMonth - currentMonth;
             } else {
-                birthMonth = birthMonth + 12;
-                monthRemaining = 12 + (birthMonth - currentMonth);
+                dayOfBirthMonth = dayOfBirthMonth + 30;
+                currentMonth = currentMonth + 1;
+                dayRemaining = dayOfBirthMonth - dayOfCurrentMonth;
+                monthRemaining = birthMonth - currentMonth;
+            }
+        } else if (birthMonth < currentMonth) {
+            if (dayOfBirthMonth >= dayOfCurrentMonth) {
+                dayRemaining = dayOfBirthMonth - dayOfCurrentMonth;
+                monthRemaining = (12 - currentMonth) + birthMonth;
+            } else {
+                dayRemaining = (dayOfBirthMonth + 30) - dayOfCurrentMonth;
+                monthRemaining = ((12 - currentMonth) + birthMonth) - 1;
             }
         }
 
