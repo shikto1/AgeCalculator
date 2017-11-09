@@ -1,7 +1,10 @@
 package com.example.shishir.agecalculator;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -88,15 +91,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.calculateBtn: {
                 String today = todayDateTv.getText().toString();
                 String birthDate = dateOfBirthTv.getText().toString();
-                if (TextUtils.isEmpty(birthDate)) {
-                    Toast.makeText(this, "Enter Birth Date", Toast.LENGTH_SHORT).show();
-                } else {
+                if (!TextUtils.isEmpty(birthDate)) {
                     calculateAge(today, birthDate);
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this).setMessage("Date of Birth must be filled up !").setCancelable(true).setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    Dialog dialog = builder.create();
+                    dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
+                    dialog.show();
                 }
+
                 break;
             }
             case R.id.clearBtn: {
-                dateOfBirthTv.setText("dd - mm - yyyy");
+                dateOfBirthTv.setText("");
                 yearAtAgeTv.setText("00");
                 monthsAtAgeTv.setText("00");
                 daysAtAgeTv.setText("00");
@@ -148,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cal.setTime(new Date());
         int currentMonth = cal.get(Calendar.MONTH);
         int dayOfCurrentMonth = cal.get(Calendar.DAY_OF_MONTH);
+        Toast.makeText(this, dayOfBirthMonth + "  " + birthMonth + "\n" + dayOfCurrentMonth + "  " + currentMonth, Toast.LENGTH_SHORT).show();
 
 
         // Getting Differences....................................................
@@ -158,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 monthRemaining = birthMonth - currentMonth;
             } else {
                 dayRemaining = (dayOfBirthMonth + 30) - dayOfCurrentMonth;
-                monthRemaining = (birthMonth + 12) - currentMonth - 1;
+                monthRemaining = ((12 - currentMonth) + birthMonth) - 1;
             }
         } else if (birthMonth > currentMonth) {
             if (dayOfBirthMonth >= dayOfCurrentMonth) {
@@ -192,5 +205,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             dateOfBirthTv.setText(String.format("%02d", dayOfMonth) + " - " + String.format("%02d", month + 1) + " - " + year);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this).setMessage("Do you Really want to exit ?").setCancelable(false)
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        }).show();
+        super.onBackPressed();
     }
 }
