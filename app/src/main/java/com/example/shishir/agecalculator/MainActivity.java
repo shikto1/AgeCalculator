@@ -92,17 +92,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String today = todayDateTv.getText().toString();
                 String birthDate = dateOfBirthTv.getText().toString();
                 if (!TextUtils.isEmpty(birthDate)) {
-                    calculateAge(today, birthDate);
+                    if (inputIsValid(today, birthDate)) {
+                        calculateAge(today, birthDate);
+                    } else {
+                        showAlert("Date of Birth cannot be less than Today's Date !");
+                    }
                 } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this).setMessage("Date of Birth must be filled up !").setCancelable(true).setNegativeButton("Ok", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    Dialog dialog = builder.create();
-                    dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
-                    dialog.show();
+                    showAlert("Date of Birth must be filled up !");
                 }
 
                 break;
@@ -117,6 +113,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
         }
+    }
+
+    private void showAlert(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this).setMessage(message).setCancelable(true).setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        Dialog dialog = builder.create();
+        dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
+        dialog.show();
+    }
+
+    private boolean inputIsValid(String today, String birthDate) {
+        boolean result = false;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd - MM - yyyy");
+        Calendar calToday = Calendar.getInstance();
+        Calendar calBirth = Calendar.getInstance();
+        try {
+            calToday.setTime(sdf.parse(today));
+            calBirth.setTime(sdf.parse(birthDate));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (calToday.getTimeInMillis() >= calBirth.getTimeInMillis()) {
+            result = true;
+        }
+        return result;
     }
 
     private void calculateAge(String today, String birthDate) {
@@ -221,6 +246,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
             }
         }).show();
-        super.onBackPressed();
     }
 }
