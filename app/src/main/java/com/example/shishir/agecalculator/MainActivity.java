@@ -231,20 +231,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             dateOfBirthTv.setText(String.format("%02d", dayOfMonth) + " - " + String.format("%02d", month + 1) + " - " + year);
         }
     }
-
-    @Override
-    public void onBackPressed() {
-        new AlertDialog.Builder(this).setMessage("Do you Really want to exit ?").setCancelable(false)
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                finish();
-            }
-        }).show();
-    }
 }
